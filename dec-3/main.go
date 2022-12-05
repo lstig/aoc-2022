@@ -34,14 +34,18 @@ func priority(r rune) int {
 	return int(r - 96)
 }
 
-// Should make this recursive, e.g. intersect(s1 Set, s2... Set)
-func intersect(s1 Set, s2 Set) Set {
+func intersect(s1 Set, s2... Set) Set {
 	n := Set{}
+	this, next := s2[0], s2[1:]
 
-	for r := range s2 {
+	for r := range this {
 		if _, ok := s1[r]; ok {
 			n[r] = exists
 		}
+	}
+
+	if len(next) > 0 {
+		n = intersect(n, next...)
 	}
 
 	return n
@@ -73,7 +77,7 @@ func main() {
 		// Part 2
 		lines = append(lines, toSet(line))
 		if (len(lines) % 3) == 0 {
-			n = intersect(lines[0], intersect(lines[1], lines[2]))
+			n = intersect(lines[0], lines[1], lines[2])
 			lines = []Set{}
 			for r := range n {
 				total2 = total2 + priority(r)
