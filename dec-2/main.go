@@ -1,10 +1,9 @@
 package main
 
 import (
-	"bufio"
 	"fmt"
-	"log"
-	"os"
+
+	"github.com/lstig/aoc-2022/internal/util"
 )
 
 // Rock     A X - 1pt
@@ -38,16 +37,10 @@ var ScoreTablePart2 = map[string]int{
 	"C Z": 7, // 1 + 6
 }
 
-func main()  {
-	file, err := os.Open("./input.txt")
-	if err != nil {
-		log.Fatalln(err)
-	}
-	defer file.Close()
-
-	scanner := bufio.NewScanner(file)
-	total1  := 0
-	total2  := 0
+func main() {
+	scanner := util.OpenInput("./input.txt")
+	total1 := 0
+	total2 := 0
 
 	for scanner.Scan() {
 		line := scanner.Text()

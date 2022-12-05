@@ -1,15 +1,15 @@
 package main
 
 import (
-	"bufio"
 	"errors"
 	"fmt"
-	"log"
-	"os"
 	"unicode"
+
+	"github.com/lstig/aoc-2022/internal/util"
 )
 
 type Set map[rune]struct{}
+
 var exists struct{}
 
 func toSet(arr []rune) Set {
@@ -34,7 +34,7 @@ func priority(r rune) int {
 	return int(r - 96)
 }
 
-func intersect(s1 Set, s2... Set) Set {
+func intersect(s1 Set, s2 ...Set) Set {
 	n := Set{}
 	this, next := s2[0], s2[1:]
 
@@ -52,13 +52,7 @@ func intersect(s1 Set, s2... Set) Set {
 }
 
 func main() {
-	file, err := os.Open("./input.txt")
-	if err != nil {
-		log.Fatalln(err)
-	}
-	defer file.Close()
-
-	scanner := bufio.NewScanner(file)
+	scanner := util.OpenInput("./input.txt")
 	total1 := 0
 	total2 := 0
 	lines := []Set{}
@@ -69,7 +63,7 @@ func main() {
 		line := []rune(scanner.Text())
 
 		// Part 1
-		n = intersect(toSet(line[:(len(line) / 2)]), toSet(line[len(line) / 2:]))
+		n = intersect(toSet(line[:(len(line)/2)]), toSet(line[len(line)/2:]))
 		for r := range n {
 			total1 = total1 + priority(r)
 		}

@@ -1,11 +1,10 @@
 package main
 
 import (
-	"bufio"
 	"fmt"
-	"log"
-	"os"
 	"strconv"
+
+	"github.com/lstig/aoc-2022/internal/util"
 )
 
 type Heap struct {
@@ -17,7 +16,7 @@ func (h *Heap) parent(i int) int {
 }
 
 func (h *Heap) rightChild(i int) int {
-	return  (2 * i) + 2
+	return (2 * i) + 2
 }
 
 func (h *Heap) leftChild(i int) int {
@@ -25,7 +24,7 @@ func (h *Heap) leftChild(i int) int {
 }
 
 func (h *Heap) isLeaf(i int) bool {
-	return i > (len(h.Heap) / 2) && i <= len(h.Heap)
+	return i > (len(h.Heap)/2) && i <= len(h.Heap)
 }
 
 func (h *Heap) swap(i int, j int) {
@@ -69,15 +68,8 @@ func (h *Heap) Insert(i int) {
 }
 
 func main() {
-	file, err := os.Open("./input.txt")
-	if err != nil {
-		log.Fatalln(err)
-	}
-	defer file.Close()
-
-	scanner := bufio.NewScanner(file)
-
-	heap := Heap{ Heap: []int{} }
+	scanner := util.OpenInput("./input.txt")
+	heap := Heap{Heap: []int{}}
 	current := 0
 
 	for scanner.Scan() {
@@ -92,5 +84,5 @@ func main() {
 	}
 
 	fmt.Printf("Most Calories %v\n", heap.Heap[0])
-	fmt.Printf("Top 3 %v\n", heap.Pop() + heap.Pop() + heap.Pop())
+	fmt.Printf("Top 3 %v\n", heap.Pop()+heap.Pop()+heap.Pop())
 }
