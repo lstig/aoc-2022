@@ -116,8 +116,8 @@ func main() {
 	lexer := lex.NewLexer(s)
 	fs := &FileSystem{
 		Root: &Node{
-			Name: "",
-			Type: Directory,
+			Name:     "",
+			Type:     Directory,
 			Children: map[string]*Node{},
 		},
 		TotalSize: 70000000,

@@ -48,11 +48,11 @@ func main() {
 		som.Add(b)
 		if sop.Found() && !foundP {
 			foundP = true
-			fmt.Printf("Found packet marker at offset %v: %q\n", i + 1, sop.Window)
+			fmt.Printf("Found packet marker at offset %v: %q\n", i+1, sop.Window)
 		}
 		if som.Found() && !foundM {
 			foundM = true
-			fmt.Printf("Found message marker at offset %v: %q\n", i + 1, som.Window)
+			fmt.Printf("Found message marker at offset %v: %q\n", i+1, som.Window)
 		}
 	}
 

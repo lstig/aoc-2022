@@ -23,7 +23,7 @@ func (c CrateStacks) Move(num int, from int, to int, strategy string) {
 	switch strategy {
 	case "pop":
 		// to store the popped value
-		var j string;
+		var j string
 		for i := 0; i < num; i++ {
 			// Pop
 			j, c[from] = c[from][len(c[from])-1], c[from][:len(c[from])-1]
@@ -60,8 +60,8 @@ func main() {
 		// add the line to the stacks only if it contains crates
 		matched, _ := regexp.MatchString(`\s+\[`, line)
 		if matched {
-			for i, j := 0, 0; i < len(line); i, j = i + 4, j + 1 {
-				crate := string(line[i:i+2][1])
+			for i, j := 0, 0; i < len(line); i, j = i+4, j+1 {
+				crate := string(line[i : i+2][1])
 				// ignore blank crates
 				if crate != " " {
 					part1.Add(j, crate)
