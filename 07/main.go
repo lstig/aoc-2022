@@ -4,7 +4,7 @@ import (
 	"fmt"
 	"strconv"
 
-	lex "github.com/lstig/aoc-2022/dec-7/lexer"
+	lex "github.com/lstig/aoc-2022/07/lexer"
 	"github.com/lstig/aoc-2022/internal/util"
 )
 
